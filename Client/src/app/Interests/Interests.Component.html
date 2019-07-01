@@ -1,0 +1,29 @@
+<div class="interest">
+    <h4>Interests</h4>
+    <div *ngIf="isDataAvailable">
+        <!-- Render stuff that needs interest data-->
+        <ul class="list-group" style="overflow-anchor: none;;max-height: inherit">
+            <div href="#" class="list-group-item list-group-item-action flex-column align-items-start"
+                *ngFor="let interestNode of interestData.interests">
+                <div class="row">
+                <div class="column interestleft">
+                    <div class="labelspacer"></div>
+                    {{ interestNode.interest }}
+                    </div>
+                    <div class="column interestright">
+                    <button class="interestbutton" (click)="onRemoveInterest(interestNode.interest);$event.stopPropagation();$event.preventDefault();">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </ul>
+        <form ng-show="visible"
+                #newInterestForm="ngForm"
+                (ngSubmit)="onAddInterest(newInterestForm.value)">
+            <label class="editlabel">New Interest: </label>
+            <input class="editinput" type="text" name="newInterest" [(ngModel)]="interestFieldValue" (click)="$event.preventDefault();">
+            <div class="labelspacer"></div>
+            <button class="button" type="submit">Add</button>
+        </form>
+
+    </div>
+ </div>

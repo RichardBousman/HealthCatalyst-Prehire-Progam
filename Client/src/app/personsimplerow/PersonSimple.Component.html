@@ -1,0 +1,19 @@
+<div class="personsimple"
+    (click)="person.showDetails = false;">
+    <div class="personrow">
+        <div class="column left">
+            <h3>{{ person.firstName }} {{person.lastName}}</h3>
+            {{ person.addressCommaSeparated }}
+            <br/>
+            Age: {{person.age}} (DOB: {{person.displayBirthDate}})
+            <br/>
+            Interests: {{person.interests.join(", ")}}
+            </div>
+        <div class="column right">
+            <img class="userImage" 
+            src={{GetImageUrl}}            
+            alt="{{ 'Photo of ' + person.firstName + ' ' + person.lastName }}"
+            style="width:150px;height:150px;">
+        </div>
+        </div>
+</div>

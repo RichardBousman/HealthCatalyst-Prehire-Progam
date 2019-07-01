@@ -1,0 +1,55 @@
+<div class="personedit"
+    (click)="person.showDetails = false; $event.stopPropagation();">
+    <div class="row" style="width:100%; display:flex; position: relative;">
+        <div class="leftcolumn" style="position: relative;" >
+            <h3>Edit Person Data</h3>
+            <form ng-show="visible"
+                #personEditForm="ngForm"
+                (ngSubmit)="onSave(personEditForm.value)">
+                <label class="editlabel">First Name: </label>
+                <input class="editinput" type="text" name="newFirst" [ngModel]="person.firstName" (click)="$event.preventDefault();"><br/>
+                <label class="editlabel">Last Name: </label>
+                <input class="editinput" type="text" name="newLast" [ngModel]="person.lastName" (click)="$event.preventDefault();"><br/>
+                <label class="editlabel">Address Line 1: </label>
+                <input class="editinput" type="text" name="addressLine1" [ngModel]="person.addressLine1" (click)="$event.preventDefault();"><br/>
+                <label class="editlabel">Address Line 2: </label>
+                <input class="editinput" type="text" name="addressLine2" [ngModel]="person.addressLine2" (click)="$event.preventDefault();"><br/>
+                <label class="editlabel">City: </label>
+                <input class="editinput" type="text" name="city" [ngModel]="person.city" (click)="$event.preventDefault();"><br/>
+                <label class="editlabel">State or Territory: </label>
+                <input class="editinput" type="text" name="state" [ngModel]="person.stateOrTerritory" (click)="$event.preventDefault();"><br/>
+                <label class="editlabel">Country: </label>
+                <input class="editinput" type="text" name="country" [ngModel]="person.country" (click)="$event.preventDefault();"><br/>
+                <label class="editlabel">Zip Code: </label>
+                <input class="editinput" type="text" name="zip" [ngModel]="person.zipCode" (click)="$event.preventDefault();"><br/>
+                <label class="editlabel">Date of Birth: </label>
+                <input class="editlabel" type="date" name="birthdate" [ngModel]=person.birthDate><br/>
+
+                <app-Interests [person]="person" [parentComponent]="this"></app-Interests>
+                <br/>
+
+                <button class="widebutton" style="position:absolute; bottom: 0px; margin-top: 20px" type="submit">Save</button>
+            </form>
+            <br/>
+        </div> <!-- Column Left-->
+
+        <div class="rightcolumn" style="position: relative;" >
+            <img class="userImage center" style="align-self: center"
+                src={{GetImageUrl}}
+                alt="{{ 'Photo of ' + person.firstName + ' ' + person.lastName }}"
+                style="width:200px;height:200px;"> 
+            <br/>
+
+            <div>
+                <input type="file" id="fileLoader" name="photo" ng2FileSelect [uploader]="uploader"
+                    title="Load File" (change)="newImageSelected($event);uploader.uploadAll();" />
+                <input class="widebutton center" type="button" id="btnOpenFileDialog" value="Change Image" onclick='(fileLoader).click();' />
+            </div>
+            <br/>
+            
+            <br/>
+            <button class="widebutton" style="position:absolute; bottom: 0px" (click)="cancelEditDetails() ;">Back</button>
+        </div> <!-- Column Right-->
+    </div> <!-- class = row -->
+</div>
+

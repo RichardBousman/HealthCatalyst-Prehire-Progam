@@ -1,0 +1,56 @@
+<div class="position-relative container setBackgroundImage">
+  <div *ngIf="dataLoaded">
+    <div *ngIf="!showAddDialog">
+      <div class="row justify-content-center">
+        <div class="card mt-sm-3 col-md-8">
+          <div class="card-body">
+            <h3 class="mb-0">People Search</h3>
+            <div class="form-group">
+              <div class="form-label" *ngIf="query"><strong>For:</strong>
+                {{ query }}
+              </div>
+              <input class="form-control mt-2" type="text"
+                [(ngModel)]="query">
+            </div> <!-- form-group -->
+          </div> <!-- card-body -->
+        </div> <!-- card -->
+      </div> <!-- row -->
+      <br/>
+        <h4>People in Database (click on entry for more details...)</h4>
+        <button class="widebutton" (click)="showAddDialog = true ;showStatus('Add New Person');">Add New Person</button>
+        <br/>
+        <br/>
+        <div class="position-absolute container" style="left: 0; z-index:10;">
+          <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5">
+              <div class="list-group" style='overflow-anchor: none'>
+                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start"
+                    *ngFor="let person of (people |searchForPeople: query)"
+                    (click)="showDetails(person);"
+                    id="Person{{person.personId}}">
+                  <app-PersonSimple *ngIf="!person.showDetails && !person.editDetails" [person]="person"></app-PersonSimple>
+                  <app-PersonDetails *ngIf="person.showDetails && !person.editDetails" [person]="person"></app-PersonDetails>
+                  <app-PersonEdit *ngIf="person.editDetails" [person]="person"></app-PersonEdit>
+                  <br/>
+                  </a>
+              </div><!-- list-group -->
+            </div><!-- col -->
+          </div><!-- row --> 
+        </div><!-- container -->
+      </div> <!-- Not Show Add Dialog -->
+
+      <div *ngIf="showAddDialog">
+        <app-PersonAdd></app-PersonAdd>
+      </div>
+  </div> <!-- Data Loaded -->
+
+  <div *ngIf="!dataLoaded" class="delayText">
+    <h2 *ngIf="simulateDelayFromServer">Simulated delay set around line 105 of 'app.component.ts'</h2>
+    <h3>Even working at nearly the speed of light, sometimes the internet just isn't as fast as one would like.  Waiting to get data from
+      the data server.  That server is located just beyond some rusty phone wires installed during the Roosevelt Administration.
+      <br/><br/>
+      Message for 'Gracefully' handling the delay.
+    </h3>
+  </div>
+
+</div><!-- position -->

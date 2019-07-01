@@ -1,0 +1,13 @@
+# Files for git to ignore
+Client/node_modules/*
+Client/dist/*
+Client/node_modules - Copy/*
+Client/.vscode/*
+Client/src/assets/images/*
+PeopleSearchServer/.vs/*
+PeopleSearchServer/PeopleSearchServer/bin/*
+PeopleSearchServer/PeopleSearchServer/obj/*
+PeopleSearchServer/PeopleSearchServer/*.user
+PeopleSearchServer/Unittests/bin/*
+PeopleSearchServer/Unittests/obj/*
+File Uploader/*

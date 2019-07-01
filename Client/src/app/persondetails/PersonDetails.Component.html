@@ -1,0 +1,34 @@
+<div class="persondetails" style="text-decoration: none"
+    (click)="person.showDetails = false; $event.stopPropagation();">
+    <div class="row" style="width:100%; display:flex; position: relative;">
+            <div class="leftcolumn" style="position: relative">
+            <h3>{{ person.firstName }} {{person.lastName}}</h3>
+            <div class="detailslabel">Address Line 1:</div> {{ person.addressLine1 }}<br/>
+            <div *ngIf="person.addressLine2"><div class="detailslabel">Address Line 2:</div> {{ person.addressLine2 }}<br/></div>
+            <div class="detailslabel">City:</div> {{person.city}}<br/>
+            <div class="detailslabel">State:</div> {{person.stateOrTerritory}} <br/>
+            <div class="detailslabel">Country:</div> {{person.country}}<br/>
+            <div class="detailslabel">Zip:</div> {{person.zipCode}}<br/><br/>
+            <div class="detailslabel">Age:</div> {{person.age}}<br/>
+            <div class="detailslabel">DOB:</div> {{person.displayBirthDate}}<br/><br/>
+            <div class="detailslabel">Interests:</div> <br/><br/>
+            <div class="persondetailsinterest" style="height: auto">
+                <div class="list-group-item list-group-item-action flex-column align-items-start"
+                    *ngFor="let interest of person.interests">
+                    {{interest}}<br/>
+                </div>
+            </div>
+            <br/>
+            <div class="labelspacer"></div><br/><br/><br/>
+           <button class="widebutton" style="position: absolute; bottom: 0" (click)="person.editDetails = true;">Edit</button>
+        </div>
+        <div class="rightcolumn" style="position: relative;">
+            <img class="userImage"
+            src={{GetImageUrl}}
+            alt="{{ 'Photo of ' + person.firstName + ' ' + person.lastName }}"
+            style="width:200px;height:200px;align-self: center"> <br/>
+        <br/> <br/>
+            <button class="widebutton" style="position: absolute; bottom: 0; left:0; margin-left:0" (click)="deletePerson() ;">Delete Person</button>
+        </div>
+    </div>
+</div>

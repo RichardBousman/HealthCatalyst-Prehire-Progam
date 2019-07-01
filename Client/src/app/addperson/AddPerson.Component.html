@@ -1,0 +1,57 @@
+<div class="tophelptext">
+    Add the person to the People Database
+    <br/>
+</div>
+
+Fields marked with asterick (*) are required.
+<br/><br/>
+
+<div class="personadd"
+    (click)="$event.stopPropagation();">
+    <h4>Add Person </h4>
+    <form ng-show="visible"
+    #personAddForm="ngForm"
+    (ngSubmit)="onSave(personAddForm.value)">
+        <div class="row" style="width:100%; display:table; height:300px">
+            <div class="leftcolumn" style="display: table-cell; float: none; vertical-align: top; position: relative;" >
+                <label class="editlabel">*First Name: </label>
+                <input class="editinput" type="text" name="newFirst" placeholder="first name" [ngModel] ngRequired><br/>
+                <label class="editlabel">*Last Name: </label>
+                <input class="editinput" type="text" name="newLast"  placeholder="last name" [ngModel] ngRequired><br/>
+                <label class="editlabel">Address Line 1: </label>
+                <input class="editinput" type="text" name="addressLine1"  placeholder="123 Main Street" [ngModel] ><br/>
+                <label class="editlabel">Address Line 2: </label>
+                <input class="editinput" type="text" name="addressLine2"  placeholder="" [ngModel] ><br/>
+                <label class="editlabel">City: </label>
+                <input class="editinput" type="text" name="city"  placeholder="Anytown" [ngModel] ><br/>
+                <label class="editlabel">State or Territory: </label>
+                <input class="editinput" type="text" name="state"  placeholder="" [ngModel] ><br/>
+                <label class="editlabel">Country: </label>
+                <input class="editinput" type="text" name="country"  placeholder="USA" [ngModel] ><br/>
+                <label class="editlabel">Zip Code: </label>
+                <input class="editinput" type="text" name="zip"  placeholder="" [ngModel] ><br/>
+                <label class="editlabel">Date of Birth: </label>
+                <input class="editlabel" type="date" name="birthdate"  [ngModel] ><br/>
+
+                <app-Interests [person]="emptyPerson" [parentComponent]="this"></app-Interests>
+                <button class="widebutton" type="submit">Add</button>
+
+            </div> <!-- Column Left-->
+    
+            <div class="rightcolumn" style="display: table-cell; float: none; vertical-align: top; position: relative;" >
+
+                <img class="userImage" src={{GetImageUrl}} width="200" height="200"> <br/>
+
+                <label class="editlabel">Image File: </label>{{imageFileLabel}}<br/>
+
+                <input type="file" id="fileLoader" name="photo" ng2FileSelect [uploader]="uploader"
+                    title="Load File" (change)="newFileSelected($event);imageFileLabel = $event.currentTarget.files[0].name; uploader.uploadAll();" [ngModel]/>
+                <input class="widebutton center" type="button" id="btnOpenFileDialog" value="Select Image" onclick='(fileLoader).click();' />
+                <br/>
+
+                <button class="widebutton" style="position:absolute; bottom: 5px"  (click)="cancelAdd() ;">Cancel Add</button>
+            </div> <!-- Column Right-->
+        </div> <!-- class = row -->
+        
+    </form>
+</div>

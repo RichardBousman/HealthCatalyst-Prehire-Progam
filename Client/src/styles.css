@@ -1,0 +1,229 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.personrow {
+    border-width: 10px;
+    border-color: blue;
+    border-radius: 30px;
+    border:solid ;
+    background-color: transparent ;
+    max-width: 800px;
+    min-height: 135px ;
+}
+
+.persondetails {
+    border-width: 10px;
+    border-color: blue;
+    border-radius: 30px;
+    border:solid ;
+    background-color: transparent ;
+    max-width: 800px;
+    min-height: 350px ;
+}
+
+.detailslabel {
+    font-weight: bolder;
+    display: inline;
+}
+
+.persondetailsinterest {
+    margin-left: 20px;
+}
+
+.personedit {
+    border-width: 10px;
+    border-color: blue;
+    border-radius: 30px;
+    border:solid ;
+    background-color: transparent ;
+    max-width: 800px;
+    min-height: 600px ;
+}
+
+.personadd {
+    border-width: 10px;
+    border-color: blue;
+    border-radius: 30px;
+    border:solid ;
+    background-color: transparent ;
+    max-width: 700px;
+    min-height: 600px ;
+}
+
+.editlabel {
+    margin-bottom: 10px;
+}
+
+.editinput {
+    margin-bottom: 10px;
+}
+
+.editinput:after {
+    content: "\n";
+}
+
+.button {
+    background-color: aqua;
+    width: 100px;
+    height: 25px;
+    border-radius: 10px;
+}
+
+.widebutton {
+    background-color: aqua;
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    margin: 15px;
+}
+
+.wideRightButton {
+    background-color: aqua;
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    margin: 15px;
+}
+
+.buttonspacer {
+    width: 20px;
+    height: auto;
+    display: inline-block;
+}
+
+.tophelptext {
+    font-size: large;
+    font-weight: bold;
+    color: blue;
+    text-align: center;
+    margin: 20px;
+
+}
+
+.labelspacer {
+    width: 20px;
+    height: auto;
+    display: inline-block;
+}
+
+.column {
+     padding: 10px;
+}
+
+.left {
+    float: left;
+    width: 75%;
+}
+
+.right {
+    float: none;
+ 
+}
+
+.interestleft {
+    float: left;
+    width: 200px;
+}
+
+.interestright {
+    float: left;
+}
+
+.interestbutton {
+    background-color: aqua;
+    width: 100px;
+    height: 25px;
+    border-radius: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.leftcolumn {
+    padding: 5px;
+    float: left;
+    width: 65%;
+}
+
+.rightcolumn {
+    padding: 5px;
+    margin-right: 10px;
+    float: right ;
+    align-content: center;
+    align-items: center;
+}
+.center {
+    align-items: center;
+    align-content: center;
+    align-self:  center;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+.snackbarStyle {
+    border-width: 5px;
+    border-radius: 30%;
+    border:solid ;
+    background-color: azure ;
+    color: blue;
+    width: 200px;
+    height: 25px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.snackbarError {
+    border-width: 5px;
+    border-radius: 30%;
+    border:solid ;
+    background-color: azure ;
+    color: red;
+    font-weight: bold;
+    width: 200px;
+    height: 25px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.setBackgroundImage {
+    background-image: url('./background.jfif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+}
+
+.userImage {
+    border-width: 5px;
+    border-radius: 50%;
+    border:solid ;
+    background-color: black ;
+}
+
+.delayText {
+    margin: auto;
+    border: 40px;
+    height: 650px;
+    width: 50%;
+    text-align: center;
+}
+
+.delayText h3 {
+    margin-top: 200px;
+    line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#fileLoader
+{
+    display: none;
+}
+
