@@ -1,4 +1,5 @@
-﻿
+﻿using Microsoft.Extensions.Configuration;
+
 namespace PeopleSearchServer
 {
     /// <summary>
@@ -21,6 +22,16 @@ namespace PeopleSearchServer
             else
             {
                 return source;
+            }
+        }
+
+        public static bool RunningOnAzure
+        {
+            get
+            {
+                string trueOrFalse = (string) Startup.Configuration.GetValue<string> ("RunningOnAzure");
+
+                return trueOrFalse.ToLower () == "true";
             }
         }
     }
