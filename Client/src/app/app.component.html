@@ -1,14 +1,13 @@
 <div class="position-relative container setBackgroundImage">
   <div *ngIf="dataLoaded">
-    <div *ngIf="!showAddDialog">
+    <div *ngIf="showWhat=='List'">
       <div class="row justify-content-center">
         <div class="card mt-sm-3 col-md-8">
           <div class="card-body">
-            <h3 class="mb-0">People Search</h3>
+            <h3 class="mb-0" style="width: 50%;display: inline-block">Search</h3>
+            <button class="widebutton" (click)="showWhat='TechInfo';showStatus('About this Application');" style="display: inline-block">Technical Info...</button>
             <div class="form-group">
-              <div class="form-label" *ngIf="query"><strong>For:</strong>
-                {{ query }}
-              </div>
+              <div class="form-label" *ngIf="query"><strong>For:</strong> {{ query }} </div>
               <input class="form-control mt-2" type="text"
                 [(ngModel)]="query">
             </div> <!-- form-group -->
@@ -17,7 +16,7 @@
       </div> <!-- row -->
       <br/>
         <h4>People in Database (click on entry for more details...)</h4>
-        <button class="widebutton" (click)="showAddDialog = true ;showStatus('Add New Person');">Add New Person</button>
+        <button class="widebutton" (click)="showWhat='AddPerson';showStatus('Add New Person');">Add New Person</button>
         <br/>
         <br/>
         <div class="position-absolute container" style="left: 0; z-index:10;">
@@ -39,8 +38,12 @@
         </div><!-- container -->
       </div> <!-- Not Show Add Dialog -->
 
-      <div *ngIf="showAddDialog">
+      <div *ngIf="showWhat=='AddPerson'">
         <app-PersonAdd></app-PersonAdd>
+      </div>
+
+      <div *ngIf="showWhat=='TechInfo'">
+        <app-TechInfo></app-TechInfo>
       </div>
   </div> <!-- Data Loaded -->
 

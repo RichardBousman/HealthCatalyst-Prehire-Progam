@@ -82,9 +82,9 @@ export class PersonAddComponent implements OnInit {
     PeopleManager.AddPerson ( changes, (newPersonObject) => {
       this.parent.showStatus ( `User ${formdata.newFirst} ${formdata.newLast} Added.`);
       UpdateParentsPerson ( this, newPersonObject ) ;
-    }); 
+    });
 
-    this.parent.showAddDialog = false ;
+    this.parent.showWhat = 'List';
 
     /**
      * Check to see if the field is null, and if so show message to user and return true
@@ -94,7 +94,7 @@ export class PersonAddComponent implements OnInit {
      */
     function fieldIsNull ( fieldName: string, fieldValue: string, parent: AppComponent ) : Boolean
     {
-      if ( fieldValue == undefined || fieldValue == "" )
+      if ( fieldValue == undefined || fieldValue == '' )
       {
         parent.showError ( `Field '${fieldName}' must not be null.`);
 
@@ -124,17 +124,17 @@ export class PersonAddComponent implements OnInit {
       var leadingText ;
 
       if ( oldChanges.length > 0 ){
-        leadingText = "@" ;
+        leadingText = '@' ;
       }
       else
       {
-        leadingText = "";
+        leadingText = '';
       }
 
       // Return the old changes with this change concatenated to them
       return oldChanges + leadingText + fieldName + "=" + newText ;
     }
-   
+
     // Update entry on parents list of people
     /**
      * Update the data on the parent Component
@@ -172,7 +172,7 @@ export class PersonAddComponent implements OnInit {
       return ;
     }
 
-    parent.showAddDialog = false ;
+    parent.showWhat = 'List';
   }
 
   /**

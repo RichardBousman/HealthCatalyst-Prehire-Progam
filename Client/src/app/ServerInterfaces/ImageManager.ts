@@ -1,3 +1,5 @@
+import { ConfigurationSettings } from "../Configuration";
+
 /**
  * Manage the accesses to the Image Server.
  * 
@@ -6,17 +8,18 @@
 export abstract class ImageManager {
     /** URL of the Image Interface (Server) */
     //public static readonly ImageInterfaceUrl:string = 'https://localhost:44362/api/image';
-    public static readonly ImageInterfaceUrl:string = 'https://rbbhealthcatalystprehireserver.azurewebsites.net/api/image';
+    public static readonly ImageInterfaceUrlold:string = 'https://rbbhealthcatalystprehireserver.azurewebsites.net/api/image';
+    public static readonly ImageInterfaceUrl:string = `${ConfigurationSettings.ServerRoot}/api/image` ;
 
     /** [Invalid] GUID of the image for the image used when no image available. */
-    public static readonly UnknownImageGuid = "0";
+    public static readonly UnknownImageGuid = '0';
 
     /**
      * Get the Image URL that can be used to download the actual image from the server
      * @param guid GUID of the image to retrieve
      */
     public static GetImageUrl ( guid: string ) {
-        return this.ImageInterfaceUrl + "?guid=" + guid ;
+        return this.ImageInterfaceUrl + '?guid=' + guid ;
     }
 
     /**
@@ -27,7 +30,7 @@ export abstract class ImageManager {
 
         if ( guid != this.UnknownImageGuid )
         {
-            this.sendRequest ( "DELETE", guid, null );
+            this.sendRequest ( 'DELETE', guid, null );
         }
     }
    
@@ -42,7 +45,7 @@ export abstract class ImageManager {
 
         request.onreadystatechange = () => {
             if ( request.readyState == XMLHttpRequest.DONE ) {
-                if ( request.responseText != "undefined" ) {
+                if ( request.responseText != 'undefined' ) {
                     if ( callback != null )
                     {
                         callback ( request.response );

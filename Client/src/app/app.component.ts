@@ -29,10 +29,10 @@ export class AppComponent {
   runStatus: string;
   request: XMLHttpRequest;
   people: Array<Person>;
-  showAddDialog: boolean;
   currentPersonElement: HTMLElement;
   dataLoaded: boolean;
   simulateDelayFromServer: boolean;
+  showWhat: string;
 
   /**
    * Show the Details for the person selected
@@ -98,9 +98,9 @@ export class AppComponent {
     this.query = '';
     this.runStatus = 'Sending Request';
     this.people = [];
-    this.showAddDialog = false ;
     this.dataLoaded = false ;
-    
+    this.showWhat = 'List' ;
+
     /*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
 
     this.simulateDelayFromServer = true ;  // Set true to simulate a delay, otherwise false

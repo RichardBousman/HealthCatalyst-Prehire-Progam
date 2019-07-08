@@ -1,0 +1,71 @@
+<div>
+    <h1 class="infoH1" style="display: inline-block">Technical Information about Application</h1>
+    <button class="topButton"  (click)="parent.showWhat='List'">Back</button>
+
+    <h2 class="infoH2">Author</h2>
+
+    <p class="infoBullet">
+    Richard Bousman<br/>
+    RichardBousman@Yahoo.com<br/>
+    (775) 313-6656
+    </p>
+
+    <h2 class="infoH2">Client</h2>
+
+    <p class="infoBullet">
+            Client side is an Angular 8 / TypeScript application running in a Windows 10 environment as an Application Service on Azure.
+            Client was written exclusively to test/show the Server side application.  The pointer to the server is contained in the file
+            Configuration.ts.  An artifical delay is put into the server accesses in file app.component.ts on approximately line 105.
+            </p>
+
+    <h2 class="infoH2">Server</h2>
+
+    <p class="infoBullet">
+            Server is an ASP.NET Core 2.2 application running as an Application Service on Azure.
+            Server uses Entity Framework as the ORM to access the Azure based SQL database.
+            Changing the runningOnAzure flag in appsettings.json is the sole change that has to be made in order to run locally or on
+            Azure.
+            </p>
+
+    <p class="infoBullet">
+            Server uses Cross-Origin Resource Sharing (CORS) to limit access to the server to only the client application.
+            Database user name and password are stored in an Azure Key Vault to prevent being visible to others.
+            Database injection attacks are deterred by using the Entity Frameworks Linq interfaces.
+            </p>
+
+    <p class="infoBullet">
+            Server consists of approximately 500 C# statements (semicolon count) and 224 lines of comments (1800 lines overall).
+            Data in the SQL database is seeded automatically with three users ('Richard Bousman', 'Trent Wignall' and 'Fred Flinestone').
+            Database migrations are set up automatically to allow modifications in the future.  A message handler is implemented
+            which will show the error message, HTTP request being processed (if applicable), exception information (if applicable) and
+            source file, method and line number that generated the message.  Currently all messages are ultimately routed to the console.
+            </p>
+                
+    <h2 class="infoH2">Testing</h2>
+
+    <p class="infoBullet">
+            Unit testing for the server consists of automated tests in which 87 different assertions are run in 13 distinct areas: Database seeding, Address handling,
+            Person creation, People Get, People Post, People Put, People Delete, Creating Interests, Adding and deleting interests separatly, 
+            Adding and deleting interests in the same call,  Creating Images, Keeping track of number of users using an image and Image controller.
+            Unit test code makes up nearly 1100 lines of C# code with 215 of those lines being comments.
+            </p>
+
+    <h2 class="infoH2">Tools Used</h2>
+
+    <p class="infoBullet">
+            Client code was written using Visual Studio Code (version 1.35) while the server code was written using Visual Studio 2019.
+            Microsoft's SQL Server Management Studio was used to verify database creation and contents.
+            </p>
+
+    <p class="infoBullet">
+            Project management and source control was done using Azure Devops where task and bugs were managed using a Kanboard.  
+            DevOps environment address is 
+            '<a href="https://richardbousman-yahoo.visualstudio.com/HealthCatalyst%20Prehire%20Program">https://richardbousman-yahoo.visualstudio.com/HealthCatalyst Prehire Program</a>' although Currently
+            due to a bug in DevOps, I am unable to make that project public.  Individuals can request to view the project in DevOps by sending me an
+            email (address above).  Trent should have already received an email allowing him to view the project.
+            Source code is mirrored in GitHub at 
+            '<a href="https://github.com/RichardBousman/HealthCatalyst-Prehire-Program">https://github.com/RichardBousman/HealthCatalyst-Prehire-Program</a>'.
+            </p>
+        
+    <button class="widebutton bottomButton"  (click)="parent.showWhat='List'">Back</button>
+</div>

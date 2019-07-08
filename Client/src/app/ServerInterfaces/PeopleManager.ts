@@ -4,6 +4,7 @@
 
 import { sendRequest } from "selenium-webdriver/http";
 import { Person } from "../model/person";
+import { ConfigurationSettings } from "../Configuration";
 
 
 /**
@@ -12,7 +13,8 @@ import { Person } from "../model/person";
 export abstract class PeopleManager {
     /** URL of the People Server */
 //    public static readonly PeoplenterfaceUrl:string = 'https://localhost:44362/api/People';
-    public static readonly PeoplenterfaceUrl:string = 'https://rbbhealthcatalystprehireserver.azurewebsites.net/api/People';
+    public static readonly PeoplenterfaceUrlOld:string = 'https://rbbhealthcatalystprehireserver.azurewebsites.net/api/People';
+    public static readonly PeopleInterfaceUrl: string = `${ConfigurationSettings.ServerRoot}/api/People` ;
 
     /**
      * Get the people entries from the database.
@@ -24,7 +26,7 @@ export abstract class PeopleManager {
      */
     public static GetPeople ( callback: ( receivedData: Array<Person> ) => void ) 
     {
-        PeopleManager.sendRequest ( "GET", PeopleManager.PeoplenterfaceUrl, (receivedText) => {
+        PeopleManager.sendRequest ( 'GET', PeopleManager.PeopleInterfaceUrl, (receivedText) => {
             var peopleArray: Array<Person> = <Array<Person>> JSON.parse ( receivedText );
             callback ( peopleArray ) ;
         } ) ;
@@ -37,7 +39,7 @@ export abstract class PeopleManager {
      */
     public static AddPerson ( parameters: string, callback: (newPerson: Person) => void) {
 
-        PeopleManager.DoAddOrUpdate ( "POST", `${PeopleManager.PeoplenterfaceUrl}?changes=${parameters}`, callback ) ;
+        PeopleManager.DoAddOrUpdate ( 'POST', `${PeopleManager.PeopleInterfaceUrl}?changes=${parameters}`, callback ) ;
     }
 
    /**
@@ -47,7 +49,7 @@ export abstract class PeopleManager {
      */ 
     public static UpdatePerson ( personId: string, changes: string, callback: (newPerson: Person) => void) {
 
-        PeopleManager.DoAddOrUpdate ( "PUT", `${PeopleManager.PeoplenterfaceUrl}?personId=${personId}&changes=${changes}`, callback ) ;
+        PeopleManager.DoAddOrUpdate ( 'PUT', `${PeopleManager.PeopleInterfaceUrl}?personId=${personId}&changes=${changes}`, callback ) ;
     }
 
     /**
@@ -55,7 +57,7 @@ export abstract class PeopleManager {
      * @param personId Identity of the person to delete.
      */
     public static DeletePerson ( personId: string ) {
-        PeopleManager.sendRequest ( "DELETE", `${PeopleManager.PeoplenterfaceUrl}/${personId}`, null ) ;
+        PeopleManager.sendRequest ( 'DELETE', `${PeopleManager.PeopleInterfaceUrl}/${personId}`, null ) ;
     }
 
     /**
@@ -66,7 +68,7 @@ export abstract class PeopleManager {
      */
     private static DoAddOrUpdate ( method: string, url: string, callback: (newPerson: Person) => void) {
         PeopleManager.sendRequest ( method, url, (receivedText) => {
-            var updatedObject:Person = JSON.parse(receivedText) as Person ;
+            const updatedObject:Person = JSON.parse(receivedText) as Person ;
             callback ( updatedObject ) ;
         })
     }
@@ -83,7 +85,7 @@ export abstract class PeopleManager {
         request.onreadystatechange = () => {
         if ( request.readyState == XMLHttpRequest.DONE ) {
             if ( request.status == 200 && 
-                request.responseText != "undefined" ) {
+                request.responseText != 'undefined' ) {
                     if ( callback != null )
                     {
                         callback ( request.responseText ) ;
@@ -94,7 +96,7 @@ export abstract class PeopleManager {
 
         request.open(method, url );
 
-        request.setRequestHeader ( "Content-Type", "application/json, charset=utf-8");
+        request.setRequestHeader ( 'Content-Type', 'application/json, charset=utf-8');
 
         // Send the request. The response is handled in the 
         // onCompletion function.

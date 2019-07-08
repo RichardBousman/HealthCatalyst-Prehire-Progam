@@ -1,0 +1,40 @@
+/* Styles used in TechInfo Component */
+
+.widebutton {
+    background-color: aqua;
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    margin: 15px;
+}
+
+.infoH1 {
+    margin-left: 2%;
+    color: black
+}
+
+
+.infoH2 {
+    margin-left: 5%;
+    color: blue
+}
+
+.infoBullet {
+    margin-left: 10%;
+    color: darkblue;
+}
+
+.bottomButton {
+    margin-left: 40%; 
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+
+.topButton{
+    margin-left: 80px; 
+    display: inline-block;
+    background-color: aqua;
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+}

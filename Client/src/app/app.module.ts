@@ -17,6 +17,7 @@ import {PersonDetailsComponent} from './persondetails/PersonDetails.Component' ;
 import {PersonEditComponent} from './personedit/PersonEdit.Component';
 import {PersonAddComponent} from './addperson/AddPerson.Component';
 import { InterestsComponent } from './Interests/Interest.Component' ;
+import { TechInfoComponent } from './TechInfoDialog/TechInfo.Component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { InterestsComponent } from './Interests/Interest.Component' ;
     PersonEditComponent,
     PersonAddComponent,
     InterestsComponent,
+    TechInfoComponent,
     SearchForPeoplePipe,
     FileSelectDirective
   ],
