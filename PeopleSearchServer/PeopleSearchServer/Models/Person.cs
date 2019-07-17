@@ -4,8 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using PeopleSearchServer.Models;
 
 namespace PeopleSearchServer.Models
 {
@@ -78,7 +76,7 @@ namespace PeopleSearchServer.Models
         }
 
         /// <summary>
-        /// URL of Image of person
+        /// GUID of Image of person
         /// </summary>
         [Display(Name = "Image GUID")]
         public string ImageGUID
@@ -87,6 +85,9 @@ namespace PeopleSearchServer.Models
             set;
         }
 
+        /// <summary>
+        /// Set of interests for the person
+        /// </summary>
         public string[] Interests
         {
             get
@@ -168,7 +169,11 @@ namespace PeopleSearchServer.Models
 
         #region Address Formatting
 
-
+        /// <summary>
+        /// Format the address using the parts seperator passed in ('\n', '<br/>', ','  ...)
+        /// </summary>
+        /// <param name="lf">Line Separator</param>
+        /// <returns>Formatted address</returns>
         private string FormatAddress(string lf)
         {
             StringBuilder results = new StringBuilder();
@@ -185,6 +190,13 @@ namespace PeopleSearchServer.Models
             return results.ToString();
         }
 
+        /// <summary>
+        /// IF there is text in the address part, then return the text followed by the separator.
+        /// Otherwise return the empty string.
+        /// </summary>
+        /// <param name="part">Part of the address to go on one line</param>
+        /// <param name="linefeed">Line parts separator</param>
+        /// <returns>Formatted address with separator in it.</returns>
         private string FormatAddressPart(string part, string linefeed)
         {
             if (string.IsNullOrWhiteSpace(part))
@@ -238,6 +250,9 @@ namespace PeopleSearchServer.Models
             }
         }
 
+        /// <summary>
+        /// Constructor... Create an empty person
+        /// </summary>
         public Person ()
         {
             this.FirstName = string.Empty;
@@ -253,6 +268,10 @@ namespace PeopleSearchServer.Models
             this.ZipCode = string.Empty;
         }
 
+        /// <summary>
+        /// String representation of person for debugging
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"Person: {FirstName} {LastName} : DOB: {DisplayBirthDate}";

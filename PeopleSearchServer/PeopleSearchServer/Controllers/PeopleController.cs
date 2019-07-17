@@ -17,6 +17,10 @@ namespace PeopleSearchServer.Controllers
     {
         private readonly PeopleSearchContext _context;
 
+        /// <summary>
+        /// Constructor for PeopleSearchServer
+        /// </summary>
+        /// <param name="context"></param>
         public PeopleController(PeopleSearchContext context)
         {
             _context = context;
@@ -45,6 +49,10 @@ namespace PeopleSearchServer.Controllers
             return person;
         }
 
+        /// <summary>
+        /// Post a new Person to the database
+        /// </summary>
+        /// <returns>HTTP Status, with OK also returns the new person</returns>
         [HttpPost]
         public async Task<IActionResult> PostNewPerson ()
         {
@@ -71,6 +79,12 @@ namespace PeopleSearchServer.Controllers
             return BadRequest ();
         }
 
+        /// <summary>
+        /// Update the person with the changes
+        /// </summary>
+        /// <param name="personId">Person to update</param>
+        /// <param name="changes">Changes to apply</param>
+        /// <returns>HTTP Status, with OK the updated person is returned</returns>
         [HttpPut]
         public async Task<IActionResult> Update( string personId, string changes)
         {
@@ -206,6 +220,11 @@ namespace PeopleSearchServer.Controllers
             return person;
         }
 
+        /// <summary>
+        /// Return true if the person ID exists in the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool PersonExists(int id)
         {
             return _context.Person.Any(e => e.PersonId == id);

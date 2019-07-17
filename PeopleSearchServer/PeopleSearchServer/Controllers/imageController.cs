@@ -54,7 +54,7 @@ namespace PeopleSearchServer.Controllers
             if ( useUnknownGuid (guid) )
             {
                 returnValue = UnknownImage;
-           }
+            }
             else
             {
                 try
@@ -71,6 +71,10 @@ namespace PeopleSearchServer.Controllers
             //return File ( returnValue.Jpeg, "application/octet-stream" );
         }
 
+        /// <summary>
+        /// Add the new image to the database, return the new Image ID
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public string Post ()
         {
@@ -84,12 +88,12 @@ namespace PeopleSearchServer.Controllers
                 byte[] fileContents = new byte[file.Length];
 
                 // handle file here
-                var stream = file.OpenReadStream();
+                using ( var stream = file.OpenReadStream () )
                 {
                     stream.Read ( fileContents, 0, (int) file.Length );
+                    stream.Position = 0;
+                    stream.Close ();
                 }
-                stream.Position = 0;
-                stream.Close ();
 
                 Image newImage = new Image ( fileContents );
 
@@ -103,7 +107,7 @@ namespace PeopleSearchServer.Controllers
                 catch ( Exception exception )
                 {
                     // Log Error
-                    System.Diagnostics.Debug.WriteLine ( $"Error creating image: '{exception.Message}'" );
+                    MessageHandler.Error ( $"Error creating image: '{exception.Message}'", this.Request, exception );
                  }
             }
 

@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.EntityFrameworkCore;
 using PeopleSearchServer.Models;
-using Microsoft.Azure.Services.AppAuthentication;
-using Microsoft.Azure.KeyVault;
-using Microsoft.Azure.KeyVault.Models;
 
 namespace PeopleSearchServer
 {
@@ -37,8 +27,8 @@ namespace PeopleSearchServer
 
             if ( Extensions.RunningOnAzure )
             {
-                string user = GetSecret ( "dbUser" );
-                string password = GetSecret ( "dbPassword" );
+                string user = Extensions.GetSecretFromKeyVault ( "dbUser" );
+                string password = Extensions.GetSecretFromKeyVault ( "dbPassword" );
 
                 connectionString = Configuration.GetConnectionString ( "AzurePeopleSearch" );
                 connectionString = connectionString.Replace ( "{user}", user );
@@ -94,18 +84,6 @@ namespace PeopleSearchServer
                     name: "default",
                     template: "{controller=People}/{action=Get}/{id?}");
             });
-        }
-
-        private string GetSecret (string whichsecret )
-        {
-            SecretBundle secret = null;
-
-            AzureServiceTokenProvider tokenProvider = new AzureServiceTokenProvider ();
-            KeyVaultClient keyVaultClient = new KeyVaultClient ( new KeyVaultClient.AuthenticationCallback (tokenProvider.KeyVaultTokenCallback));
-            string url = $"https://healthcatalystkeyvault.vault.azure.net/secrets/{whichsecret}";
-            Task.Run ( async () => secret = await keyVaultClient.GetSecretAsync ( url ) ).Wait ();
-
-            return secret.Value;
         }
     }
 }
